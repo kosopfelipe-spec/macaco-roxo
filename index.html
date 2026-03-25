@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Atualização do Sistema</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+margin:0;
+background:black;
+color:#00ffcc;
+font-family:monospace;
+text-align:center;
+overflow:hidden;
+}
+</style>
+</head>
+<body>
+
+<h1 id="status" style="margin-top:20vh;">ESCANEANDO DISPOSITIVO...</h1>
+<div id="percent" style="font-size:40px;">0%</div>
+<div id="monkey" style="font-size:20px;opacity:0;">🐒</div>
+
+<audio id="som" src="https://www.soundjay.com/animal/monkey-sound-2.mp3"></audio>
+
+<script>
+let p=0;
+let scan=setInterval(()=>{
+p+=Math.floor(Math.random()*7)+1;
+
+if(p>=100){
+p=100;
+clearInterval(scan);
+document.body.style.background="#6a0dad";
+status.innerHTML="⚠️ MACACO ROXO DETECTADO ⚠️";
+percent.innerHTML="ATIVANDO...";
+setTimeout(ativar,1200);
+}
+
+percent.innerHTML=p+"%";
+},120);
+
+function ativar(){
+monkey.style.opacity=1;
+monkey.style.fontSize="140px";
+som.play();
+
+setInterval(()=>{
+document.body.style.background=`hsl(${Math.random()*360},80%,40%)`;
+monkey.style.transform=`scale(${1+Math.random()*1.5}) rotate(${Math.random()*360}deg)`;
+},180);
+}
+</script>
+
+</body>
+</html>
